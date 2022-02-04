@@ -13,6 +13,7 @@
 
   function init(opts, $menu) {
     var activeRow = null,
+      defaultDelay = 300,
       mouseLocs = [],
       lastDelayLoc = null,
       timeoutId = null,
@@ -21,6 +22,7 @@
         submenuSelector: "*",
         submenuDirection: "right",
         tolerance: 75, // bigger = more forgivey when entering submenu
+        delay: defaultDelay,
         enter: noop,
         exit: noop,
         activate: noop,
@@ -30,7 +32,7 @@
     for (var k in opts) options[k] = opts[k];
 
     var MOUSE_LOCS_TRACKED = 3, // number of past mouse locations to track
-      DELAY = 300; // ms delay when user appears to be entering submenu
+      DELAY = options.delay > 0 ? options.delay : defaultDelay; // ms delay when user appears to be entering submenu
 
     /**
      * Keep track of the last few locations of the mouse.
