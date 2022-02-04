@@ -120,6 +120,15 @@
       }
     };
 
+
+    var menuPageOffsetTop = function(){
+      return $menu.getBoundingClientRect().y + $menu.ownerDocument.defaultView.scrollY;
+    }
+
+    var menuPageOffsetLeft = function(){
+      return $menu.getBoundingClientRect().x + $menu.ownerDocument.defaultView.scrollX;
+    }
+
     /**
      * Return the amount of time that should be used as a delay before the
      * currently hovered row is activated.
@@ -136,9 +145,10 @@
       //    return 0;
       //  }
 
+
       var offset = {
-          top: options.top || $menu.offsetTop,
-          left: options.left || $menu.offsetLeft,
+          top: options.top || menuPageOffsetTop(),
+          left: options.left || menuPageOffsetLeft(),
           width: options.width || $menu.offsetWidth,
           height: options.height || $menu.offsetHeight
         },
